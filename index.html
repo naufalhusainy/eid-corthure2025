@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kartu Ucapan Idul Fitri</title>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; background-color: #f4f4f4; }
+        #card-container { position: relative; display: inline-block; }
+        #card { 
+            width: 768px; 
+            height: 960px; 
+            background: url('eid-ctr.png') no-repeat center; 
+            background-size: cover; 
+            position: relative; 
+        }
+        #name { 
+            position: absolute; 
+            bottom: 160px; /* Sesuaikan dengan posisi kotak merah */
+            left: 50%; 
+            transform: translateX(-50%);
+            width: 200px; /* Sesuaikan dengan lebar kotak merah */
+            height: 50px; /* Sesuaikan dengan tinggi kotak merah */
+            font-size: 28px; 
+            font-weight: bold; 
+            color: #1E2A40;
+            text-align: center;
+            line-height: 50px; /* Agar teks rata tengah */
+            background-color: rgba(255, 255, 255, 0); /* Transparan agar sesuai */
+        }
+        button { margin-top: 10px; padding: 10px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h2>Selamat Hari Raya Idul Fitri</h2>
+    <input type="text" id="username" placeholder="Masukkan Nama Anda">
+    <button onclick="generateCard()">Tampilkan</button>
+    <div id="card-container">
+        <div id="card">
+            <div id="name"></div>
+        </div>
+    </div>
+    <button onclick="downloadCard()">Unduh</button>
+
+    <script>
+        function generateCard() {
+            let name = document.getElementById("username").value;
+            document.getElementById("name").innerText = name ? name : "Nama Anda";
+        }
+
+        function downloadCard() {
+            html2canvas(document.querySelector("#card")).then(canvas => {
+                let link = document.createElement("a");
+                link.href = canvas.toDataURL("image/png");
+                link.download = "kartu-ucapan-idulfitri.png";
+                link.click();
+            });
+        }
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</body>
+</html>
